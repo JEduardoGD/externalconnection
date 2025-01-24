@@ -1,11 +1,14 @@
 package mx.fmre.rttycontest.externalconnection.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import mx.fmre.rttycontest.externalconnection.dto.Log;
@@ -26,10 +29,12 @@ public class LogEntity implements Serializable {
 	private LogEntityId logEntityId;
 
 	@Column(name = "callsign")
+	@Size(max = 13, message = "{validation.callsign.size.too_long}")
+	@NotNull
 	private String callsign;
 
 	@Column(name = "version_number")
-	private String versionNumber;
+	private BigDecimal versionNumber;
 
 	@Column(name = "category_assisted")
 	private String categoryAssisted;

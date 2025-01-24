@@ -2,6 +2,7 @@ package mx.fmre.rttycontest.externalconnection.service;
 
 import org.springframework.stereotype.Service;
 
+import jakarta.transaction.Transactional;
 import mx.fmre.rttycontest.externalconnection.entity.LogEntity;
 import mx.fmre.rttycontest.externalconnection.repository.LogRepository;
 
@@ -15,6 +16,7 @@ public class LogServiceImpl implements LogService {
 	}
 
 	@Override
+	@Transactional
 	public LogEntity save(LogEntity logEntity) {
 		return logRepository.save(logEntity);
 	}
