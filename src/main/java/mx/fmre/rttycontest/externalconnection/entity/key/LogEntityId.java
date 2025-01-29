@@ -18,7 +18,7 @@ public class LogEntityId implements Serializable{
 	 */
 	private static final long serialVersionUID = -3802497844847546328L;
 
-	@Column(name = "id")
+	@Column(name = "id", unique=true)
 	private Long id;
 	
 	@Column(name = "f_email")
