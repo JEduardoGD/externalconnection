@@ -62,7 +62,7 @@ public class Log implements Serializable {
 	@Size(max = 22)
 	private String categoryOverlay;
 	
-	@Min(value = 1L)
+	@Min(value = 0L)
 	@Max(value = 99999999999L)
 	private Long claimedScore;
 	
