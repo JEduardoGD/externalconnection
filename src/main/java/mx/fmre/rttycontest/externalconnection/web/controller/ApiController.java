@@ -56,14 +56,20 @@ public class ApiController {
 		LogEntity logEntity = new LogEntity(logg);
 		
 		LogEntityId logEntityId = new LogEntityId();
-		logEntityId.setId(logg.getId());
-		logEntityId.setIdEmail(logg.getIdEmail());
 		logEntityId.setAnio(logg.getAnio());
+		logEntityId.setCallsign(logg.getCallsign());
 		logEntity.setLogEntityId(logEntityId);
 
 		logEntity = logService.save(logEntity);
 		logg = new Log(logEntity);
 		return ResponseEntity.ok(logg);
+	}
+	
+	@GetMapping("/find/byyear/{year}/andcallsign/{callsign}")
+	public ResponseEntity<List<LogEntity>> findByYearAndCallsign(@PathVariable Integer year, @PathVariable String callsign){
+		log.info("ApiController - findByYearAndCallsign: {}, callsign {}", year, callsign);
+		List<LogEntity> allSavedLogsByYear = logService.findByYearAndCallsign(year, callsign);
+		return ResponseEntity.ok(allSavedLogsByYear);
 	}
 
 	@ResponseStatus(HttpStatus.BAD_REQUEST)

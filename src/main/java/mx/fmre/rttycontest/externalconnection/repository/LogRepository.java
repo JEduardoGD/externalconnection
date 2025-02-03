@@ -13,9 +13,12 @@ import mx.fmre.rttycontest.externalconnection.entity.key.LogEntityId;
 @Repository
 public interface LogRepository extends JpaRepository<LogEntity, LogEntityId> {
 	
-	@Query("SELECT (MAX(l.logEntityId.id) + 1) FROM LogEntity l")
+	@Query("SELECT (MAX(l.id) + 1) FROM LogEntity l")
 	public Long getNextId();
 
 	@Query("SELECT l FROM LogEntity l WHERE l.logEntityId.anio = :year")
 	List<LogEntity> getAllSavedLogsByYear(@Param("year") Integer year);
+
+	@Query("SELECT l FROM LogEntity l WHERE l.logEntityId.anio = :year and upper(l.logEntityId.callsign) = upper(:callsign)")
+	List<LogEntity> findByYearAndCallsign(Integer year, String callsign);
 }

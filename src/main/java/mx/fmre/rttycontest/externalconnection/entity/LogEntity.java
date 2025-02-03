@@ -7,8 +7,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import mx.fmre.rttycontest.externalconnection.dto.Log;
@@ -28,10 +26,11 @@ public class LogEntity implements Serializable {
 	@EmbeddedId
 	private LogEntityId logEntityId;
 
-	@Column(name = "callsign")
-	@Size(max = 13, message = "{validation.callsign.size.too_long}")
-	@NotNull
-	private String callsign;
+	@Column(name = "id", unique=true)
+	private Long id;
+	
+	@Column(name = "f_email")
+	private Long idEmail;
 
 	@Column(name = "version_number")
 	private BigDecimal versionNumber;
@@ -106,7 +105,8 @@ public class LogEntity implements Serializable {
 	private String soapbox;
 
 	public LogEntity(Log log) {
-		this.callsign = log.getCallsign();
+		this.id = log.getId();
+		this.idEmail = log.getIdEmail();
 		this.versionNumber = log.getVersionNumber();
 		this.categoryAssisted = log.getCategoryAssisted();
 		this.categoryBand = log.getCategoryBand();
@@ -120,6 +120,7 @@ public class LogEntity implements Serializable {
 		this.claimedScore = log.getClaimedScore();
 		this.club = log.getClub();
 		this.contest = log.getContest();
+		this.emailAddress = log.getEmailAddress();
 		this.createdBy = log.getCreatedBy();
 		this.emailAddress = log.getEmailAddress();
 		this.location = log.getLocation();

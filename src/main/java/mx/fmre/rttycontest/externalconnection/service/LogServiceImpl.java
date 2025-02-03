@@ -35,4 +35,9 @@ public class LogServiceImpl implements LogService {
 		List<LogEntity> logEntityList = logRepository.getAllSavedLogsByYear(year);
 		return logEntityList.stream().map(l -> new LogId(l)).collect(Collectors.toList());
 	}
+
+	@Override
+	public List<LogEntity> findByYearAndCallsign(Integer year, String callsign) {
+		return logRepository.findByYearAndCallsign(year, callsign);
+	}
 }

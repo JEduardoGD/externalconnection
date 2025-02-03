@@ -109,9 +109,9 @@ public class Log implements Serializable {
 	private String anio;
 
 	public Log(LogEntity savedLog) {
-		this.id = savedLog.getLogEntityId() != null ? savedLog.getLogEntityId().getId() : null;
-		this.idEmail = savedLog.getLogEntityId() != null ? savedLog.getLogEntityId().getIdEmail() : null;
-		this.callsign = savedLog.getCallsign();
+		this.id = savedLog.getId();
+		this.idEmail = savedLog.getIdEmail();
+		this.callsign = savedLog.getLogEntityId() != null ?  savedLog.getLogEntityId().getCallsign() : null;
 		this.versionNumber = savedLog.getVersionNumber();
 		this.categoryAssisted = savedLog.getCategoryAssisted();
 		this.categoryBand = savedLog.getCategoryBand();

@@ -13,4 +13,6 @@ public interface LogService {
 
 	Long getNextId();
 
+	List<LogEntity> findByYearAndCallsign(Integer year, String callsign);
+
 }

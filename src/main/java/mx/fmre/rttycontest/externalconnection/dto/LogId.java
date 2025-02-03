@@ -18,7 +18,7 @@ public class LogId implements Serializable {
 	private String anio;
 
 	public LogId(LogEntity logEntity) {
-		this.callsign = logEntity.getCallsign() != null ? logEntity.getCallsign() : null;
+		this.callsign = logEntity.getLogEntityId() != null ? logEntity.getLogEntityId().getCallsign() : null;
 		this.anio = logEntity.getLogEntityId() != null ? logEntity.getLogEntityId().getAnio() : null;
 	}
 }
